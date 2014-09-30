@@ -1,0 +1,47 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view title="Issue">
+  <ion-content has-header="true" padding="true">
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <img src="img/app-default-logo.png">
+        <h2>{{issue.rule}}</h2>
+        <p>{{ issue.lastOccuranceTimestamp | timestamp }}</p>
+      </div>
+
+      <div class="item item-body">
+        <!--<img class="full-image" src="delorean.jpg">-->
+        <p>
+          This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+          the content is from a card-body consisting of an image and paragraph text. The footer
+          consists of tabs, icons aligned left, within the card-footer.
+        </p>
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Like
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Comment
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-share"></i>
+          Share
+        </a>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>
