@@ -24,24 +24,23 @@
 </style>
 <ion-view title="Stats">
   <ion-content class="padding">
-    <h1>Charts</h1>
     <!--<highchart config="chartConfig"></highchart>-->
     <ion-slide-box show-pager="false">
-  <ion-slide>
-    <div class="box blue"><h1>Req / s</h1></div>
-  </ion-slide>
-  <ion-slide>
-    <div class="box yellow"><h1>Avg Response Time</h1></div>
-  </ion-slide>
-  <ion-slide>
-    <div class="box pink"><h1>Processing Break Down</h1></div>
-  </ion-slide>
-  <ion-slide>
-    <div class="box green"><h1>CPU Usage</h1></div>
-  </ion-slide>
-  <ion-slide>
-    <div class="box orange"><h1>Avg Memory Usage</h1></div>
-  </ion-slide>
+	  <ion-slide>
+	       <highchart id="chart8" config="chartConfig"></highchart>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box blue"><h1>Req / s</h1></div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box yellow"><h1>Avg Response Time</h1></div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box pink"><h1>Processing Break Down</h1></div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box green"><h1>CPU Usage</h1></div>
+	  </ion-slide>
 </ion-slide-box>
   </ion-content>
 </ion-view>

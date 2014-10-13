@@ -6,22 +6,27 @@
 <ion-tabs class="tabs-icon-top">
 
 
-  <!-- Dashboard Tab -->
+  <!-- Home Tab -->
+  <ion-tab title="Home" icon="icon ion-home" ui-sref="app.home">
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+  
+  <!-- Monitor Tab -->
   <ion-tab title="Monitor" icon="icon ion-eye" ui-sref="app.monitor">
     <ion-nav-view name="tab-monitor"></ion-nav-view>
   </ion-tab>
 
 
-  <!-- Friends Tab -->
+  <!-- Stats Tab -->
   <ion-tab title="Stats" icon="icon ion-stats-bars" ui-sref="app.stats">
     <ion-nav-view name="tab-stats"></ion-nav-view>
   </ion-tab>
 
 
-  <!-- Account Tab -->
-  <ion-tab title="Settings" icon="icon ion-gear-b" ui-sref="app.settings">
-    <ion-nav-view name="tab-settings"></ion-nav-view>
-  </ion-tab>
+  <!-- Settings Tab -->
+<!--   <ion-tab title="Settings" icon="icon ion-gear-b" ui-sref="app.settings"> -->
+<!--     <ion-nav-view name="tab-settings"></ion-nav-view> -->
+<!--   </ion-tab> -->
 
 
 </ion-tabs>

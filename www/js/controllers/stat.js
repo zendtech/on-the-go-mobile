@@ -1,73 +1,26 @@
 angular.module('onthego.controllers')
 
 .controller('StatsCtrl', function($scope, StatResource) {
+	  var to = Math.round((new Date()).getTime() / 1000);
+	  var from = 1413079200;
 
   $scope.chartConfig = {
     options: {
       chart: {
         animation: true,
-  			zoomType: 'x',
-  			//renderTo: 'graph1',
-  			defaultSeriesType: 'line',
-  			type: 'area'
-      },
-      lang: {
-        loading: ''
-      },
-      loading: {
-        labelStyle: {}
+		zoomType: 'x',
+		type: 'area'
       },
       credits: {
         enabled: false
       },
+      exporting: {
+	    enabled: false
+	  },
       title: {
-        text: 'Requests Per Second',
+        text: '',
         style: {
           color: '#355968'
-        }
-      },
-      xAxis: {
-        type: 'datetime',
-        dateTimeLabelFormats: {
-          minute: '%H:%M',
-          hour: '%H:%M',
-          month: '%e. %b',
-          year: '%b. %y'
-        },
-        events:{
-          afterSetExtremes:function(){
-          zendCharts.chartZoomChanges(this.chart.xAxis[0].min, this.chart.xAxis[0].max);
-            if (typeof zendCharts === 'object') {
-              // TODO: add check for no-data graphs since they change the zoom
-              zendCharts.chartZoomChanges(this.chart.xAxis[0].min, this.chart.xAxis[0].max);
-            }
-          }
-        }
-      },
-      yAxis: {
-        title: {
-          text: ''
-        },
-        labels: {
-          formatter: function() {
-            var val = this.value;
-            switch ('') {
-              case 'mb':
-                val = formatFileSize(val * 1024 * 1024);
-                break;
-              case '%':
-              case '%%':
-                val = val + '%';
-                break;
-              case 'ms':
-                val = formatMiliseconds(val);
-                break;
-              default:
-                val = formatSize(val);
-                break;
-            }
-            return val;
-          }
         }
       },
       legend: {
@@ -82,32 +35,7 @@ angular.module('onthego.controllers')
         }
       },
       tooltip: {
-        enabled: true,
-        formatter: function() {
-          var val = this.y;
-          switch ('') {
-            case 'mb':
-              val = formatFileSize(val * 1024 * 1024);
-              break;
-            case '%':
-              val = val + '%';
-              break;
-            case 'ms':
-              val = formatMiliseconds(val);
-              break;
-            case '%%':
-              val = this.percentage.toPrecision(3) + '%';
-              break;
-            default:
-              val = formatSize(val);
-              break;
-          }
-
-          // remove twice
-          var currDate = removeServerTimezoneOffset(removeTimezoneOffset(new Date(this.x)));
-
-          return val + ' | ' + formatDate(currDate, "%d.%m.%y %H:%M");
-        }
+        enabled: false,
       },
       plotOptions: {
         series: {
@@ -129,14 +57,52 @@ angular.module('onthego.controllers')
         }
       },
     },
-    exporting: {
-			enabled: false
-		},
-	  series: [{data: []}]
-  }
+    xAxis: {
+    	type: 'datetime',
+    	dateTimeLabelFormats: {
+	        minute: '%H:%M',
+	        hour: '%H:%M',
+	        month: '%e. %b',
+	        year: '%b. %y'
+	    },
+    },
+    yAxis: {
+    	title: {
+	        text: ''
+	    },
+	    labels: {
+          formatter: function() {
+            var val = this.value;
+            switch ('') {
+              case 'mb':
+                val = formatFileSize(val * 1024 * 1024);
+                break;
+              case '%':
+              case '%%':
+                val = val + '%';
+                break;
+              case 'ms':
+                val = formatMiliseconds(val);
+                break;
+              default:
+                val = formatSize(val);
+                break;
+            }
+            return val;
+          }
+        }
 
-  StatResource.getList(30).then(function(result) {
-    $scope.stats = result;
-    $scope.chartConfig.series[0]['data'] = result;
+    },
+	series: [{data: []}],
+	func: function (chart) {
+		
+	}
+  };
+
+  $scope.currTimeRange = '1d';
+  
+  StatResource.getList(37, from, to).then(function(result) {
+	  $scope.chartConfig.options.title.text = result[0].title;
+	  $scope.chartConfig.series[0]['data'] = result[0].data;
   });
-})
+});

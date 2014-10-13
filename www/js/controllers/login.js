@@ -1,17 +1,21 @@
 angular.module('onthego.controllers')
 
-.controller('LoginCtrl', function($scope, $http, $state, AuthenticationService) {
+.controller('LoginCtrl', function($rootScope, $scope, $http, $state, AuthenticationService) {
   $scope.message = "";
   $scope.user = {
     username: "julien",
     password: "avalon"
-  }
+  };
+  $scope.server = "http://localhost:8080";
 
   $scope.login = function() {
-    console.log('logging in...');
-
+	  window.localStorage.setItem('server', $scope.server);
     AuthenticationService.login($scope.user);
-  }
+  };
+  
+  $scope.logout = function() {
+    AuthenticationService.logout();
+  };
 
   $scope.$on('event:auth-loginRequired', function(e, rejection) {
     $scope.loginModal.show();
@@ -33,6 +37,6 @@ angular.module('onthego.controllers')
   });
 
   $scope.$on('event:auth-logout-complete', function() {
-    $state.go('app.settings', {}, {reload: true, inherit:false});
+	  $rootScope.$broadcast('event:auth-loginRequired');
   });
-})
+});

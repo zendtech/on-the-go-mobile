@@ -1,3 +1,5 @@
+var serverTimezoneOffset = 2;
+
 function dateFromISO8601(isostr) {
   var parts = isostr.match(/\d+/g);
 
@@ -62,6 +64,7 @@ function formatDate(date, dateFormat, shortforms) {
 
   if (shortforms) {
     var calcDate 	= (removeTimezoneOffset(new Date())).getTime() + (serverTimezoneOffset * 1000 * 3600);
+    console.log(calcDate);
     var today 		= new Date(calcDate);
     var tomorrow	= new Date(calcDate).increment('day', 1);
     var yesterday	= new Date(calcDate).decrement('day', 1);

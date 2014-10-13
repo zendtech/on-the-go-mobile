@@ -1,12 +1,14 @@
 angular.module('onthego.services')
 
-  .factory('IssueResource', function ($http, $q, Hal) {
-    var basePath = 'http://localhost/on-the-go-api';
-    var issuePath = basePath + '/monitor-issues';
-    var issues;
+  .factory('IssueResource', function ($rootScope, $http, $q, Hal) {
 
     return {
       getList: function() {
+    	if (window.localStorage.getItem('server') == null) {
+    		$rootScope.$broadcast('event:auth-loginRequired');
+    	}
+    	var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
+    	var issues;
         var config = {
           method: 'GET',
           url: issuePath
@@ -20,6 +22,7 @@ angular.module('onthego.services')
         );
       },
       get: function(issueId) {
+    	var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
         var config = {
           method: 'GET',
           url: issuePath + '/' + issueId
@@ -30,6 +33,6 @@ angular.module('onthego.services')
           }
         );
       }
-    }
+    };
 
   });

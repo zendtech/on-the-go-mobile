@@ -1,19 +1,3 @@
-// sync graphs
-function syncronizeCrossHairs(chart) {
-	 return; // temp
-   var container = $(chart.container);
-   var offset = container.getCoordinates();
-   var x;
-   var y;
-   var isInside;
-   var report;
-
-   container.addEvent('mousemove', function(evt) {
-       x = evt.event.clientX - chart.plotLeft - offset.left;
-       y = evt.event.clientY - chart.plotTop - offset.top;
-   });
-}
-
 var ZendCharts = new Class({
 
 	Implements: [Options, Events],

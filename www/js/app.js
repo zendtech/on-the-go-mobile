@@ -38,6 +38,16 @@ angular.module('onthego', ['ionic', 'onthego.controllers', 'onthego.services', '
     })
 
     // Each tab has its own nav history stack:
+    
+    .state('app.home', {
+      url: '/home',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/tab-home.html',
+          controller: 'HomeCtrl'
+        }
+      }
+    })
 
     .state('app.stats', {
       url: '/stats',
@@ -68,7 +78,7 @@ angular.module('onthego', ['ionic', 'onthego.controllers', 'onthego.services', '
       }
     })
 
-    .state('app.settings', {
+    /*.state('app.settings', {
       url: '/settings',
       views: {
         'tab-settings': {
@@ -76,10 +86,10 @@ angular.module('onthego', ['ionic', 'onthego.controllers', 'onthego.services', '
           controller: 'SettingsCtrl'
         }
       }
-    });
+    })*/;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/stats');
+  $urlRouterProvider.otherwise('/app/home');
 
 });
 angular.module('onthego.controllers', []);

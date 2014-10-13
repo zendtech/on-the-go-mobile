@@ -7,20 +7,21 @@ angular.module('onthego.services')
         payload.password = user.password;
         payload.grant_type = 'password';
         payload.client_id = 'on-the-go';
-
+        var basePath = window.localStorage.getItem('server');
+        console.log("Authentication Base Path : " + basePath);
         var config = {
-          url: 'http://localhost/on-the-go-api' + '/oauth',
+          url: basePath + '/oauth',
           method: 'POST',
           headers: {
             Accept: 'application/json'
           },
           data: payload,
           ignoreAuthModule: true,
-        }
+        };
 
         $http(config)
           .success(function (data, status, headers, config){
-            console.log('success login');
+        	  $rootScope.loggedin = true;
             $http.defaults.headers.common.Authorization = "Bearer " + data.access_token;
 
             authService.loginConfirmed(data, function(config) {
@@ -29,12 +30,12 @@ angular.module('onthego.services')
             });
           })
           .error(function(data, status, headers, config) {
-            console.log('fail login');
             $rootScope.$broadcast('event:auth-login-failed', status);
           });
       },
       logout: function(user) {
         delete $http.defaults.headers.common.Authorization;
+        $rootScope.loggedin = false;
         $rootScope.$broadcast('event:auth-logout-complete');
       },
       loginCancelled: function() {
