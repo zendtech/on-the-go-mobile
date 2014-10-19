@@ -1,7 +1,6 @@
 angular.module('onthego.controllers')
 
-.controller('AppCtrl', function($scope, $state, $ionicModal, $ionicPopup, $ionicLoading, AuthenticationService) {
-	$ionicLoading.hide();
+.controller('AppCtrl', function($scope, $state, $ionicModal, $ionicPopup, AuthenticationService) {
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope,
     animation: 'slide-in-up',

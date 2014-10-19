@@ -32,6 +32,22 @@ angular.module('onthego.services')
             return response.data;
           }
         );
+      },
+      share: function(id) {
+    	  var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
+    	  var config = {
+	          method: 'POST',
+	          url: issuePath + '/' + issueId,
+	          data: {
+	        	  'recipient': '',
+	        	  'content': ''
+	          }
+	      };
+    	  return $http(config).then(
+	          function(response) {
+	        	  console.log(response);
+	          }
+	      );
       }
     };
 

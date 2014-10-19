@@ -1,6 +1,6 @@
 angular.module('onthego.controllers')
 
-.controller('LoginCtrl', function($rootScope, $scope, $http, $state, AuthenticationService) {
+.controller('LoginCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, AuthenticationService) {
   $scope.message = "";
   $scope.user = {
     username: "julien",
@@ -18,6 +18,7 @@ angular.module('onthego.controllers')
   };
 
   $scope.$on('event:auth-loginRequired', function(e, rejection) {
+	$ionicLoading.hide();
     $scope.loginModal.show();
   });
 

@@ -1,8 +1,29 @@
 angular.module('onthego.controllers')
 
-.controller('StatsCtrl', function($scope, StatResource) {
+.controller('StatsCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, StatResource) {
 	  var to = Math.round((new Date()).getTime() / 1000);
-	  var from = 1413079200;
+	  var from = -1;
+	  
+	  $scope.timeRange = '1d';
+	  
+	  var specConfig = [
+        {
+     	   counter: 30,
+     	   boxid: "chart-req"
+        },
+        {
+     	   counter: 33,
+     	   boxid: "chart-art"
+        },
+        {
+     	   counter: 38,
+     	   boxid: "chart-cpu"
+        },
+        {
+     	   counter: 37,
+     	   boxid: "chart-mem"
+        },
+     ];
 
   $scope.chartConfig = {
     options: {
@@ -64,7 +85,12 @@ angular.module('onthego.controllers')
 	        hour: '%H:%M',
 	        month: '%e. %b',
 	        year: '%b. %y'
-	    },
+	    }/*,
+	    events: {
+	    	afterSetExtremes: function() {
+	    		
+	    	}
+	    }*/
     },
     yAxis: {
     	title: {
@@ -73,7 +99,7 @@ angular.module('onthego.controllers')
 	    labels: {
           formatter: function() {
             var val = this.value;
-            switch ('') {
+            switch ('mb') {
               case 'mb':
                 val = formatFileSize(val * 1024 * 1024);
                 break;
@@ -98,11 +124,58 @@ angular.module('onthego.controllers')
 		
 	}
   };
-
-  $scope.currTimeRange = '1d';
   
-  StatResource.getList(37, from, to).then(function(result) {
-	  $scope.chartConfig.options.title.text = result[0].title;
-	  $scope.chartConfig.series[0]['data'] = result[0].data;
-  });
+  $scope.changeTimeRange = function(timeRange) {
+	  $scope.timeRange = timeRange;
+	  $scope.changeChart($ionicSlideBoxDelegate.currentIndex());
+  };
+  
+  $scope.changeChart = function(index) {
+	  
+	  var currentDate = new Date();
+	  if ($scope.timeRange.indexOf('h') > 0) {
+		  currentDate.setHours(currentDate.getHours() - parseInt($scope.timeRange));
+		  from = Math.round(currentDate.getTime() / 1000);
+	  } else if ($scope.timeRange.indexOf('d') > 0) {
+		  currentDate.setHours(currentDate.getHours() - parseInt($scope.timeRange) * 24);
+		  from = Math.round(currentDate.getTime() / 1000);
+	  } else if ($scope.timeRange.indexOf('m') > 0) {
+		  currentDate.setMonth(currentDate.getMonth() - parseInt($scope.timeRange));
+		  from = Math.round(currentDate.getTime() / 1000);
+	  }
+	  
+	  $scope.loading = true;
+	  $ionicLoading.show();
+	  StatResource.getList(specConfig[index].counter, from, to).then(function(result) {
+		  $scope.chartConfig.options.title.text = result[0].title;
+		  $scope.chartConfig.options.chart.renderTo = specConfig[index].boxid;
+		  $scope.chartConfig.series[0]['data'] = result[0].data;
+		  $scope.chartConfig.yAxis.labels.formatter = function() {
+			  var val = this.value;
+			  switch (result[0].valueType) {
+	              case 'mb':
+	                val = formatFileSize(val * 1024 * 1024);
+	                break;
+	              case '%':
+	              case '%%':
+	                val = val + '%';
+	                break;
+	              case 'ms':
+	                val = formatMiliseconds(val);
+	                break;
+	              default:
+	                val = formatSize(val);
+	                break;
+	            }
+	            return val;
+		  };
+		  $scope.loading = false;
+		  $ionicLoading.hide();
+	  });
+  };
+  $scope.changeChart(0);
 });
+// req/s => 30 | index 0
+// art => 33 | index 1
+// CPU => 38 | index 2
+// Memory => 37 | index 3

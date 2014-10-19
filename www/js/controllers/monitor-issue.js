@@ -10,6 +10,6 @@ angular.module('onthego.controllers')
 		$ionicLoading.hide();
   });
   $scope.share = function(issueId) {
-    alert(issueId);
+    IssueResource.share(issueId);
   };
 });

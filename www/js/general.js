@@ -14,7 +14,7 @@ function _t(str, params) {
 }
 
 function formatFileSize(size, order) {
-  var sizes = [{'mul': 30, 'order': 'gb'}, {'mul': 20, 'order': 'mb'}, {'mul': 10, 'order': 'kb'}, {'mul': 1, 'order': 'b'}];
+  /*var sizes = [{'mul': 30, 'order': 'gb'}, {'mul': 20, 'order': 'mb'}, {'mul': 10, 'order': 'kb'}, {'mul': 1, 'order': 'b'}];
 
   var i = sizes.length;
   if (order) {
@@ -40,7 +40,14 @@ function formatFileSize(size, order) {
   size = (size / (1 << sizes[i].mul));
   size = size.round(2);
 
-  return size.format({suffix: order});
+  return size.format({suffix: order});*/
+	if (size == 0) {
+		return '';
+	}
+	var exp = Math.log(size) / Math.log(1024) | 0;
+    var result = (size / Math.pow(1024, exp)).toFixed(2);
+
+    return result + ' ' + (exp == 0 ? 'bytes': 'KMGTPEZY'[exp - 1] + 'B');
 
 }
 

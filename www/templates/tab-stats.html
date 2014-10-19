@@ -1,46 +1,30 @@
-<style>
-.box {
-  width: 100%;
-  height: 200px;
-}
-.box h1 {
-  color: white;
-}
-.box.yellow {
-  background-color: yellow;
-}
-.box.blue {
-  background-color: blue;
-}
-.box.pink {
-  background-color: pink;
-}
-.box.green {
-  background-color: green;
-}
-.box.orange {
-  background-color: orange;
-}
-</style>
 <ion-view title="Stats">
   <ion-content class="padding">
-    <!--<highchart config="chartConfig"></highchart>-->
-    <ion-slide-box show-pager="false">
+    <ion-slide-box show-pager="false" ng-hide="loading" on-slide-changed="changeChart(index)">
 	  <ion-slide>
-	       <highchart id="chart8" config="chartConfig"></highchart>
+
+		<highchart config="chartConfig" id="chart-req"></highchart>
 	  </ion-slide>
 	  <ion-slide>
-	    <div class="box blue"><h1>Req / s</h1></div>
+	   <highchart config="chartConfig" id="chart-art"></highchart>
 	  </ion-slide>
 	  <ion-slide>
-	    <div class="box yellow"><h1>Avg Response Time</h1></div>
+	  <highchart config="chartConfig" id="chart-cpu"></highchart>
 	  </ion-slide>
-	  <ion-slide>
-	    <div class="box pink"><h1>Processing Break Down</h1></div>
-	  </ion-slide>
-	  <ion-slide>
-	    <div class="box green"><h1>CPU Usage</h1></div>
-	  </ion-slide>
+      <ion-slide>
+      <highchart config="chartConfig" id="chart-mem"></highchart>
+      </ion-slide>
 </ion-slide-box>
+<label class="item item-input item-select">
+    <div class="input-label">
+      Time range
+    </div>
+    <select ng-model="timeRange" ng-change="changeTimeRange(timeRange)">
+        <option value="2h">2 hours</option>
+        <option value="1d">1 day</option>
+        <option value="7d">1 week</option>
+        <option value="14d">2 weeks</option>
+    </select>
+  </label>
   </ion-content>
 </ion-view>

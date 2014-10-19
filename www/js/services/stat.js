@@ -9,7 +9,7 @@ angular.module('onthego.services')
       	}
       	var statPath = window.localStorage.getItem('server') + '/api/statistics';
       	var stats;
-      	var url = statPath + "?type=" + type + "&from=" + from + '&to=' + to;
+      	var url = statPath + "?type=" + type + "&from=" + from + '&to=' + to + '&' + makeid();
       	/*if (! [500, 503, 504, 505].contains(type)) {
 			url += '&to='+to;
 		}*/
@@ -27,3 +27,13 @@ angular.module('onthego.services')
     };
 
   });
+function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
