@@ -1,8 +1,4 @@
-.project
-.buildpath
-.settings/
-.tmp/
-.DS_Store
-www/lib/
-platforms/
-plugins/
+.cordova/
+plugins/*
+platforms/*
+plugins/*

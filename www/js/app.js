@@ -5,21 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('onthego', ['ionic', 'onthego.controllers', 'onthego.services', 'highcharts-ng'])
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-})
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -30,67 +17,52 @@ angular.module('onthego', ['ionic', 'onthego.controllers', 'onthego.services', '
   $stateProvider
 
     // setup an abstract state for the tabs directive
-    .state('app', {
-      url: "/app",
+    .state('tab', {
+      url: '/tab',
       abstract: true,
-      templateUrl: "templates/tabs.html",
-      controller: "AppCtrl"
+      templateUrl: 'templates/tabs.html'
     })
 
-    // Each tab has its own nav history stack:
-    
-    .state('app.home', {
-      url: '/home',
+    // the pet tab has its own child nav-view and history
+    .state('tab.pet-index', {
+      url: '/pets',
       views: {
-        'tab-home': {
-          templateUrl: 'templates/tab-home.html',
-          controller: 'HomeCtrl'
+        'pets-tab': {
+          templateUrl: 'templates/pet-index.html',
+          controller: 'PetIndexCtrl'
         }
       }
     })
 
-    .state('app.stats', {
-      url: '/stats',
+    .state('tab.pet-detail', {
+      url: '/pet/:petId',
       views: {
-        'tab-stats': {
-          templateUrl: 'templates/tab-stats.html',
-          controller: 'StatsCtrl'
+        'pets-tab': {
+          templateUrl: 'templates/pet-detail.html',
+          controller: 'PetDetailCtrl'
         }
       }
     })
 
-    .state('app.monitor', {
-      url: '/monitor',
+    .state('tab.adopt', {
+      url: '/adopt',
       views: {
-        'tab-monitor': {
-          templateUrl: 'templates/tab-monitor.html',
-          controller: 'MonitorCtrl'
-        }
-      }
-    })
-    .state('app.monitor-issue', {
-      url: '/monitor-issue/:issueId',
-      views: {
-        'tab-monitor': {
-          templateUrl: 'templates/monitor-issue.html',
-          controller: 'MonitorIssueCtrl'
+        'adopt-tab': {
+          templateUrl: 'templates/adopt.html'
         }
       }
     })
 
-    /*.state('app.settings', {
-      url: '/settings',
+    .state('tab.about', {
+      url: '/about',
       views: {
-        'tab-settings': {
-          templateUrl: 'templates/tab-settings.html',
-          controller: 'SettingsCtrl'
+        'about-tab': {
+          templateUrl: 'templates/about.html'
         }
       }
-    })*/;
+    });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/tab/pets');
 
 });
-angular.module('onthego.controllers', []);
-angular.module('onthego.services', ['http-auth-interceptor']);
