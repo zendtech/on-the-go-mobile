@@ -6411,29 +6411,4 @@ a.button {
  * --------------------------------------------------
  * Platform specific tweaks
  */
-.platform-ios7.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: 64px; }
-  .platform-ios7.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    margin-top: 19px !important; }
-  .platform-ios7.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    margin-top: 20px; }
-.platform-ios7.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios7.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  top: 64px; }
-.platform-ios7.platform-cordova:not(.fullscreen) .has-header, .platform-ios7.platform-cordova:not(.fullscreen) .bar-subheader {
-  top: 64px; }
-.platform-ios7.platform-cordova:not(.fullscreen) .has-subheader {
-  top: 108px; }
-.platform-ios7.platform-cordova:not(.fullscreen) .has-tabs-top {
-  top: 113px; }
-.platform-ios7.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  top: 157px; }
-.platform-ios7.platform-cordova.status-bar-hide {
-  margin-bottom: 20px; }
-
-@media (orientation: landscape) {
-  .platform-ios7.platform-browser.platform-ipad {
-    position: fixed; } }
-
-.platform-c:not(.enable-transitions) * {
-  -webkit-transition: none !important;
-  transition: none !important; }
+.platform-ios8.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){height:64px}.platform-ios8.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper{margin-top:19px!important}.platform-ios8.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader)>*{margin-top:20px}.platform-ios8.platform-cordova:not(.fullscreen) .bar-subheader,.platform-ios8.platform-cordova:not(.fullscreen) .has-header,.platform-ios8.platform-cordova:not(.fullscreen) .tabs-top>.tabs,.platform-ios8.platform-cordova:not(.fullscreen) .tabs.tabs-top{top:64px}.platform-ios8.platform-cordova:not(.fullscreen) .has-subheader{top:108px}.platform-ios8.platform-cordova:not(.fullscreen) .has-tabs-top{top:113px}.platform-ios8.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top{top:157px}.platform-ios8.platform-cordova.status-bar-hide{margin-bottom:20px}@media (orientation:landscape){.platform-ios8.platform-browser.platform-ipad{position:fixed}}.platform-c:not(.enable-transitions) *{-webkit-transition:none!important;transition:none!important}

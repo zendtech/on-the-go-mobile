@@ -1,10 +1,8 @@
 angular.module('onthego.controllers')
 
 .controller('LoginController', function($rootScope, $scope, $http, $state, $ionicLoading, AuthenticationService) {
-  //$scope.message = "";
-  
+	$rootScope.data = {};
   $scope.data = {
-      //'server': 'http://localhost/on-the-go-api',
       'server': 'http://onthego.zend.com/on-the-go-api', //
       'user': {
     	  'username': 'demo',  
@@ -18,6 +16,7 @@ angular.module('onthego.controllers')
   };
   
   $scope.logout = function() {
+	  $rootScope.data.loggedIn = false;
     AuthenticationService.logout();
   };
 
@@ -27,8 +26,10 @@ angular.module('onthego.controllers')
   });
 
   $scope.$on('event:auth-loginConfirmed', function() {
-    $scope.username = null;
-    $scope.password = null;
+	  
+	  $rootScope.data.loggedIn = true;
+    $scope.data.username = null;
+    $scope.data.password = null;
     $scope.loginModal.hide();
   });
 
