@@ -1,0 +1,9 @@
+{
+  "name": "onthego-mobile",
+  "private": "true",
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "highcharts": "~4.0.4",
+    "highcharts-ng": "0.0.7"
+  }
+}

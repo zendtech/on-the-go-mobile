@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Ionic Seed App</title>
+    <title>OnTheGo App</title>
 
     <!-- ionic css -->
     <link href="lib/css/ionic.css" rel="stylesheet">
@@ -18,24 +18,43 @@
     <script src="cordova.js"></script>
 
     <!-- your app's script -->
+    <script src="lib/lodash/dist/lodash.js"></script>
+    <script src="lib/highcharts/highcharts-all.js"></script>
+    <script src="lib/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="lib/js/angular-http-auth/http-auth-interceptor.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="js/controllers/app.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/monitor.js"></script>
+    <script src="js/controllers/monitor-issue.js"></script>
+    <script src="js/controllers/stat.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/filters/timestamp.js"></script>
+    <script src="js/services/hal.js"></script>
+    <script src="js/services/authentication.js"></script>
+    <script src="js/services/issue.js"></script>
+    <script src="js/services/stat.js"></script>
   </head>
 
   <!-- 
     'starter' is the name of this angular module (js/app.js)
   -->
-  <body ng-app="starter" animation="slide-left-right-ios7">
+  <body ng-app="onthego" animation="slide-left-right-ios7">
 
     <!-- 
       The nav bar that will be updated as we navigate between views
       Additional attributes set its look, ion-nav-bar animation and icons
       Icons provided by Ionicons: http://ionicons.com/ 
     -->
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button class="button-icon button-clear ion-ios7-arrow-back">
+    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+      <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
+        Back
       </ion-nav-back-button>
+    
+	    <ion-nav-buttons side="right" ng-controller="AppController" ng-show="loggedin">
+	        <button class="button button-assertive icon ion-log-out" ng-click="logout()"></button>
+	    </ion-nav-buttons>
     </ion-nav-bar>
 
     <!-- 

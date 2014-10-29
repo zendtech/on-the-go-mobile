@@ -5,64 +5,64 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
+angular.module('onthego', ['ionic', 'onthego.services', 'onthego.controllers', 'highcharts-ng'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+	$stateProvider
 
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: '/tab',
+    .state('app', {
+      url: "/app",
       abstract: true,
-      templateUrl: 'templates/tabs.html'
+      templateUrl: "templates/tabs.html",
+      controller: "AppController"
     })
 
-    // the pet tab has its own child nav-view and history
-    .state('tab.pet-index', {
-      url: '/pets',
+    .state('app.home', {
+      url: '/home',
       views: {
-        'pets-tab': {
-          templateUrl: 'templates/pet-index.html',
-          controller: 'PetIndexCtrl'
+        'tab-home': {
+          templateUrl: 'templates/tab-home.html',
+          controller: 'HomeController'
         }
       }
     })
 
-    .state('tab.pet-detail', {
-      url: '/pet/:petId',
+    .state('app.monitor', {
+      url: '/monitor',
       views: {
-        'pets-tab': {
-          templateUrl: 'templates/pet-detail.html',
-          controller: 'PetDetailCtrl'
+        'tab-monitor': {
+          templateUrl: 'templates/tab-monitor.html',
+          controller: 'MonitorController'
+        }
+      }
+    })
+   
+    .state('app.monitor-issue', {
+      url: '/monitor-issue/:issueId',
+      views: {
+        'tab-monitor': {
+          templateUrl: 'templates/monitor-issue.html',
+          controller: 'MonitorIssueController'
         }
       }
     })
 
-    .state('tab.adopt', {
-      url: '/adopt',
+    .state('app.stats', {
+      url: '/stats',
       views: {
-        'adopt-tab': {
-          templateUrl: 'templates/adopt.html'
+        'tab-stats': {
+          templateUrl: 'templates/tab-stats.html',
+          controller: 'StatsController'
         }
       }
     })
-
-    .state('tab.about', {
-      url: '/about',
-      views: {
-        'about-tab': {
-          templateUrl: 'templates/about.html'
-        }
-      }
-    });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/pets');
+  $urlRouterProvider.otherwise('/app/home');
 
 });
+
+angular.module('onthego.controllers', []);
+angular.module('onthego.services', ['http-auth-interceptor']);
