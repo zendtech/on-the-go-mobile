@@ -20,7 +20,6 @@ angular.module('onthego.services')
 
         $http(config)
           .success(function (data, status, headers, config){
-        	  console.log('auth success');
         	  $rootScope.loggedin = true;
             $http.defaults.headers.common.Authorization = "Bearer " + data.access_token;
 
@@ -30,9 +29,6 @@ angular.module('onthego.services')
             });
           })
           .error(function(data, status, headers, config) {
-        	  console.log('auth error');
-        	  console.log(headers);
-        	  console.log(status);
             $rootScope.$broadcast('event:auth-login-failed', status);
           });
       },

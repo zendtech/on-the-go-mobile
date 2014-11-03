@@ -7,7 +7,6 @@ angular.module('onthego.services')
     	if (window.localStorage.getItem('server') == null) {
     		$rootScope.$broadcast('event:auth-loginRequired');
     	}
-    	console.log(window.localStorage.getItem('server'));
     	var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
     	var issues;
         var config = {

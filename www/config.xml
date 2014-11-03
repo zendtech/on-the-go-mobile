@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="1" id="com.zend.onthego" version="1.0">
-    <name>OnTheGoApp</name>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="1" id="com.zend.onthego" version="1.0" xmlns:gap= "http://phonegap.com/ns/1.0" >
+    <name>Zend OnTheGo</name>
     <description>A sample Ionic Framework app using Cordova and AngularJS</description>
     <author email="support@zend.com" href="http://onthego.zend.com">ZendTeam Team</author>
     <content src="index.html"/>
@@ -9,4 +9,8 @@
     <preference name="webviewbounce" value="false"/>
     <preference name="UIWebViewBounce" value="false"/>
     <preference name="DisallowOverscroll" value="true"/>
+    <icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="www/res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="www/res/icon/android/icon-72-hdpi.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="www/res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:density="xhdpi" />
 </widget>
