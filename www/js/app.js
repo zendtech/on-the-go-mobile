@@ -1,11 +1,4 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('onthego', ['ionic', 'onthego.services', 'onthego.controllers', 'highcharts-ng'])
+angular.module('onthego', ['ionic', 'ngCordova', 'onthego.services', 'onthego.controllers', 'highcharts-ng'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -58,10 +51,61 @@ angular.module('onthego', ['ionic', 'onthego.services', 'onthego.controllers', '
         }
       }
     })
+    
+    .state('app.about', {
+    	url: '/about',
+    	views: {
+    	  'tab-about': {
+    		  templateUrl: 'templates/tab-about.html',
+    		  controller: 'AboutController'
+    	  }
+    	}
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 
+}).config(function($httpProvider) {
+    $httpProvider.interceptors.push(function($rootScope) {
+        return {
+            request: function(config) {
+                $rootScope.$broadcast('loading:show');
+                return config;
+            },
+            response: function(response) {
+                $rootScope.$broadcast('loading:hide');
+                return response;
+            }
+        }
+    });
+}).run(function($rootScope, $ionicLoading, $ionicPlatform, $cordovaSplashscreen) {
+    setTimeout(function() {
+        $cordovaSplashscreen.hide()
+    }, 3000);
+	
+    $rootScope.$on('loading:show', function() {
+        $ionicLoading.show({template: 'Loading...', noBackdrop: false});
+    });
+
+    $rootScope.$on('loading:hide', function() {
+        $ionicLoading.hide();
+    });
+
+    /*$ionicPlatform.ready(function() {
+        var networkState = navigator.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        alert('Connection type: ' + states[networkState]);
+    });*/
 });
 
 angular.module('onthego.controllers', []);

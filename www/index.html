@@ -6,22 +6,26 @@
     <title>OnTheGo App</title>
 
     <!-- ionic css -->
-    <link href="lib/css/ionic.css" rel="stylesheet">
+    <link href="lib/css/ionic.min.css" rel="stylesheet">
 
     <!-- your app's css -->
     <link href="css/app.css" rel="stylesheet">
 
     <!-- ionic/angularjs scripts -->
     <script src="lib/js/ionic.bundle.js"></script>
-
+    
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+
 
     <!-- your app's script -->
     <script src="lib/lodash/dist/lodash.js"></script>
     <script src="lib/highcharts/highcharts-all.js"></script>
     <script src="lib/highcharts-ng/dist/highcharts-ng.js"></script>
     <script src="lib/js/angular-http-auth/http-auth-interceptor.js"></script>
+    <script src="lib/Toast.js"></script>
     <script src="js/main.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/app.js"></script>
@@ -30,6 +34,7 @@
     <script src="js/controllers/monitor-issue.js"></script>
     <script src="js/controllers/stat.js"></script>
     <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/about.js"></script>
     <script src="js/filters/timestamp.js"></script>
     <script src="js/services/hal.js"></script>
     <script src="js/services/authentication.js"></script>
@@ -56,7 +61,7 @@
 	        <button class="button button-assertive icon ion-log-out" ng-click="logout()" ng-show="data.loggedIn"></button>
 	    </ion-nav-buttons>
     </ion-nav-bar>
-
+    
     <!-- 
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also

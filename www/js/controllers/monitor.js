@@ -4,7 +4,6 @@ angular.module('onthego.controllers')
 	var issues = IssueResource.getList();
 	issues.then(function(result) {
         $scope.issues = result;
-        $ionicLoading.hide();
       });
 	
 });

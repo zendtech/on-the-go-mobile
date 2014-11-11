@@ -4,6 +4,7 @@
   "dependencies": {
     "lodash": "~2.4.1",
     "highcharts": "~4.0.4",
-    "highcharts-ng": "0.0.7"
+    "highcharts-ng": "0.0.7",
+    "ngCordova": "~0.1.6-alpha"
   }
 }

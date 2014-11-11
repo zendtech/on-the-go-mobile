@@ -144,7 +144,6 @@ angular.module('onthego.controllers')
 		}
 
 		$scope.loading = true;
-		$ionicLoading.show();
 		StatResource.getList(specConfig[index].counter, from, to).then(function(result) {
 			$scope.data.chartConfig.options.title.text = result[0].title;
 			$scope.data.chartConfig.options.chart.renderTo = specConfig[index].boxid;
@@ -169,12 +168,6 @@ angular.module('onthego.controllers')
 				return val;
 			};
 			$scope.loading = false;
-			$ionicLoading.hide();
-			/*$timeout(function() {
-				$window.resize();
-			}, 2000);*/
-			
-
 		});
 	};
 	$scope.changeChart(0);
