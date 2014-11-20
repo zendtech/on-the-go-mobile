@@ -79,33 +79,20 @@ angular.module('onthego', ['ionic', 'ngCordova', 'onthego.services', 'onthego.co
         }
     });
 }).run(function($rootScope, $ionicLoading, $ionicPlatform, $cordovaSplashscreen) {
+	$ionicPlatform.ready(function() {
+		StatusBar.styleDefault();
+	});
     setTimeout(function() {
         $cordovaSplashscreen.hide()
     }, 3000);
 	
     $rootScope.$on('loading:show', function() {
-        $ionicLoading.show({template: 'Loading...', noBackdrop: false});
+        $ionicLoading.show({template: 'Loading...'});
     });
 
     $rootScope.$on('loading:hide', function() {
         $ionicLoading.hide();
     });
-
-    /*$ionicPlatform.ready(function() {
-        var networkState = navigator.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.CELL]     = 'Cell generic connection';
-        states[Connection.NONE]     = 'No network connection';
-
-        alert('Connection type: ' + states[networkState]);
-    });*/
 });
 
 angular.module('onthego.controllers', []);
