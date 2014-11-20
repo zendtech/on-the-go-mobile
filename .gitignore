@@ -2,4 +2,5 @@
 plugins/*
 platforms/*
 plugins/*
+www/lib
 .DS_Store
