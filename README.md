@@ -26,3 +26,16 @@ The easiest way to run the mobile application from Zend Studio is by using the C
 2. Select Run As > Run with CordovaSim from the context menu.
 
 You can also use the other available options for launching the application: the emulators of the Android, iOS and Windows Phone platforms. They required additional installation and configuration of the respective platform SDK.
+
+Debugging the application
+-------------------------
+
+1. Install the Google Chrome web browser, if you haven't yet.
+2. Run the mobile app with CordovaSim. See the previous section for details.
+2. Right-click on the device frame of the emulator and select Debug > Dev Tools... from the context menu.
+3. Click on the hyprelink in the Dev Tools popup dialog. This will open the mobile in Chrome Dev Tools.
+4. Switch to the Sources tab.
+5. Navigate through the source tree and open a JavaScript file, e.g. js/services/authentication.js
+6. Place a breakpoint on a line number.
+7. Execute an action in CordovaSim, e.g. login
+8. The execution will stop on the breakpoint in Chrome Dev Tools.
