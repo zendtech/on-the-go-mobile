@@ -1,13 +1,13 @@
 angular.module('onthego.services')
 
-  .factory('IssueResource', function ($rootScope, $http, $q, Hal) {
+  .factory('IssueResource', function ($rootScope, $http, $q, $window, Hal, Config) {
 
     return {
       getList: function() {
-    	if (window.localStorage.getItem('server') == null) {
+    	if (Config.server == null) { 
     		$rootScope.$broadcast('event:auth-loginRequired');
     	}
-    	var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
+    	var issuePath = Config.server + '/api/monitor-issues';
     	var issues;
         var config = {
           method: 'GET',
@@ -22,7 +22,7 @@ angular.module('onthego.services')
         );
       },
       get: function(issueId) {
-    	var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
+    	var issuePath = Config.server + '/api/monitor-issues';
         var config = {
           method: 'GET',
           url: issuePath + '/' + issueId
@@ -34,7 +34,7 @@ angular.module('onthego.services')
         );
       },
       share: function(id) {
-    	  var issuePath = window.localStorage.getItem('server') + '/api/monitor-issues';
+    	  var issuePath = Config.server + '/api/monitor-issues';
     	  var config = {
 	          method: 'POST',
 	          url: issuePath + '/' + issueId,
