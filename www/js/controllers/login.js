@@ -1,19 +1,15 @@
 angular.module('onthego.controllers')
 
-.controller('LoginController', function($rootScope, $scope, $http, $state, $ionicLoading, AuthenticationService) {
+.controller('LoginController', function($rootScope, $scope, $http, $state, $ionicLoading, AuthenticationService, Config) {
 	$rootScope.data = {};
 	$scope.data = {
-		'server': 'http://onthego.zend.com/on-the-go-api',
+		'server': Config.server,
 		//'server': 'http://54.209.165.66/on-the-go-api',
-		'user': {
-			'username': 'demo',  
-			'password': 'zend'
-		}
+		'user': Config.user
 	}
-
+	
 	$scope.login = function() {
-		window.localStorage.setItem('server', $scope.data.server);
-		AuthenticationService.login($scope.data.user);
+		AuthenticationService.login(Config.user);
 	};
 
 	$scope.logout = function() {
