@@ -1,5 +1,5 @@
 angular.module('onthego.services')
-  .factory('AuthenticationService', function($rootScope, $http, authService) {
+  .factory('AuthenticationService', function($rootScope, $http, authService, Config) {
     var service = {
       login: function(user) {
         var payload = {};
@@ -7,7 +7,7 @@ angular.module('onthego.services')
         payload.password = user.password;
         payload.grant_type = 'password';
         payload.client_id = 'on-the-go';
-        var basePath = window.localStorage.getItem('server');
+        var basePath = Config.server;
         var config = {
           url: basePath + '/oauth',
           method: 'POST',

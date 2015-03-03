@@ -1,13 +1,13 @@
 angular.module('onthego.services')
 
-  .factory('StatResource', function ($rootScope, $http, $q, Hal) {
+  .factory('StatResource', function ($rootScope, $http, $q, Hal, Config) {
 
 	  return {
       getList: function(type, from, to) {
-      	if (window.localStorage.getItem('server') == null) {
+      	if (Config.server == null) {
       		$rootScope.$broadcast('event:auth-loginRequired');
       	}
-      	var statPath = window.localStorage.getItem('server') + '/api/statistics';
+      	var statPath = Config.server + '/api/statistics';
       	var stats;
       	var url = statPath + "?type=" + type + "&from=" + from + '&to=' + to + '&' + makeid();
       	/*if (! [500, 503, 504, 505].contains(type)) {
