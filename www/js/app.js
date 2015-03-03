@@ -80,7 +80,9 @@ angular.module('onthego', ['ionic', 'ngCordova', 'onthego.services', 'onthego.co
     });
 }).run(function($rootScope, $ionicLoading, $ionicPlatform, $cordovaSplashscreen) {
 	$ionicPlatform.ready(function() {
-		StatusBar.styleDefault();
+		if (window.StatusBar) {
+			StatusBar.styleDefault();
+		}
 	});
     setTimeout(function() {
         $cordovaSplashscreen.hide()
