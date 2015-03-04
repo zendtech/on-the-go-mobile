@@ -10,6 +10,7 @@
       'onthego.stats',
       'onthego.apps',
       'onthego.service',
-      'onthego.filter'
+      'onthego.filter',
+      'onthego.login'
     ]);
 })();

@@ -28,5 +28,18 @@
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/home');
+	  
+	$httpProvider.interceptors.push(function($rootScope) {
+      return {
+        request: function(config) {
+          $rootScope.$broadcast('loading:show');
+          return config;
+        },
+        response: function(response) {
+          $rootScope.$broadcast('loading:hide');
+          return response;
+        }
+      }
+    });
   }
 })();
