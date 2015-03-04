@@ -1,0 +1,11 @@
+<ion-view title="Applications">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="app in apps" class="item-avatar">
+        <img src="onthego/img/app-default-logo.png">
+        <h2>{{app.userAppName}} ({{ app.deployedVersions.deployedVersion }})</h2>
+        <p>Created on {{ app.creationTimeTimestamp | timestamp }}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -3,3 +3,4 @@ plugins/*
 platforms/*
 plugins/*
 .DS_Store
+www/vendor

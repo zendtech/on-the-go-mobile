@@ -1,10 +1,28 @@
 {
-  "name": "onthego-mobile",
-  "private": "true",
+  "name": "on-the-go-mobile",
+  "version": "1.2",
+  "homepage": "http://www.zend.com/fr/products/zendonthego",
+  "authors": [
+    "Julien Guittard <julien.guittard@me.com>"
+  ],
+  "description": "Zend On The Go is a sample mobile application designed to show developers how to create mobile applications on top of existing PHP back-ends.",
+  "main": "www/index.html",
+  "keywords": [
+    "API"
+  ],
+  "license": "BSD-3-Clause",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "src/vendor",
+    "test",
+    "tests"
+  ],
   "dependencies": {
+    "ionic": "~1.0.0",
     "lodash": "~2.4.1",
     "highcharts": "~4.0.4",
-    "highcharts-ng": "0.0.7",
-    "ngCordova": "~0.1.6-alpha"
+    "highcharts-ng": "0.0.8",
+    "ngCordova": "~0.1.11"
   }
 }

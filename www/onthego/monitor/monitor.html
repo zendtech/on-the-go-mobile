@@ -1,0 +1,12 @@
+<ion-view title="Monitor">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="issue in issues" class="item-avatar" href="#/tab/issue/{{issue.id}}">
+        <img src="onthego/img/app-default-logo.png">
+        <h2>{{issue.rule}} ({{issue.id}})</h2>
+        <p>{{ issue.lastOccuranceTimestamp | timestamp  }}</p>
+        <span class="badge badge-assertive">{{ issue.count }}</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
