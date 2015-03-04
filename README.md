@@ -24,16 +24,6 @@ Importing the project in Zend Studio
 9. Click Finish to clone the repository.
 10. Switch back to the PHP perspective, you will find the on-the-go-mobile project in the PHP Explorer view.
 
-Installing the front-end dependencies with Zend Studio and Bower
-----------------------------------------------------------------
-(You must have configured Zend Studio to use Bower.)
-
-1. Right-click on the mobile project in the PHP Explorer view.
-2. Select Bower > Install Dependencies from the context menu.
-3. Refresh the project.
-
-Dependencies are installed into the www/lib directory.
-
 Running the application
 -----------------------
 The easiest way to run the mobile application from Zend Studio is by using the CordovaSim emulator. It's a light-weight and fast web-based emulator that allows testing of Cordova-based mobile applications.
